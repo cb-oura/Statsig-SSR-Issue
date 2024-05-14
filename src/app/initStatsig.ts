@@ -24,7 +24,9 @@ export const initStatsig = async (): Promise<[StatsigUser, Record<string, unknow
     },
   };
 
-  await Statsig.initialize(process.env.STATSIG_SERVER_SECRET);
+  await Statsig.initialize(process.env.STATSIG_SERVER_SECRET, {
+    environment: { tier: "staging" }
+  });
   const data = Statsig.getClientInitializeResponse(
     user,
     process.env.NEXT_PUBLIC_STATSIG_CLIENT_KEY,
